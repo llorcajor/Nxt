@@ -1,4 +1,4 @@
-const EnterPage = () => {
+const UserProfilePage = () => {
   return (
     <main>
       <h1>Sign Up</h1>
@@ -6,4 +6,4 @@ const EnterPage = () => {
   );
 };
 
-export default EnterPage;
+export default UserProfilePage;
