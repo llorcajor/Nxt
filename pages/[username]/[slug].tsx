@@ -53,7 +53,7 @@ export default function Post(props) {
   return (
     <main className={styles.container}>
       <section>
-        <PostContent post={post} admin />
+        <PostContent post={post} />
       </section>
 
       <aside className="card">
