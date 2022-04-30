@@ -2,6 +2,7 @@ import styles from "../../styles/Post.module.css";
 import PostContent from "../../components/PostContent";
 import { firestore, getUserWithUsername, postToJSON } from "../../lib/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
+import Metatags from "../../components/Metatags";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -51,16 +52,19 @@ export default function Post(props) {
   const post = realtimePost || props.post;
 
   return (
-    <main className={styles.container}>
-      <section>
-        <PostContent post={post} />
-      </section>
+    <>
+      <Metatags />
+      <main className={styles.container}>
+        <section>
+          <PostContent post={post} />
+        </section>
 
-      <aside className="card">
-        <p>
-          <strong>{post.heartCount || 0} 🤍</strong>
-        </p>
-      </aside>
-    </main>
+        <aside className="card">
+          <p>
+            <strong>{post.heartCount || 0} 🤍</strong>
+          </p>
+        </aside>
+      </main>
+    </>
   );
 }

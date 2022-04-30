@@ -3,6 +3,7 @@ import Loader from "../components/Loader";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 
 import { useState } from "react";
+import Metatags from "../components/Metatags";
 
 // Max post to query per page
 const LIMIT = 1;
@@ -54,16 +55,19 @@ export default function Home(props) {
   };
 
   return (
-    <main>
-      <PostFeed posts={posts} admin />
+    <>
+      <Metatags />
+      <main>
+        <PostFeed posts={posts} admin />
 
-      {!loading && !postsEnd && (
-        <button onClick={getMorePosts}>Load more</button>
-      )}
+        {!loading && !postsEnd && (
+          <button onClick={getMorePosts}>Load more</button>
+        )}
 
-      <Loader show={loading} />
+        <Loader show={loading} />
 
-      {postsEnd && "You have reached the end!"}
-    </main>
+        {postsEnd && "You have reached the end!"}
+      </main>
+    </>
   );
 }
