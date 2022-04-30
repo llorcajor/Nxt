@@ -1,9 +1,9 @@
-const AdminPostsPage = () => {
+import AuthCheck from "../../components/AuthCheck";
+
+export default function AdminPostsPage(props) {
   return (
     <main>
-      <h1>Sign Up</h1>
+      <AuthCheck></AuthCheck>
     </main>
   );
-};
-
-export default AdminPostsPage;
+}
