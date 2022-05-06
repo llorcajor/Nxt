@@ -1,5 +1,5 @@
-import styles from "../../styles/Admin.module.css";
 import AuthCheck from "../../components/AuthCheck";
+import styles from "../../styles/Admin.module.css";
 import PostFeed from "../../components/PostFeed";
 import { UserContext } from "../../lib/context";
 import { firestore, auth, serverTimestamp } from "../../lib/firebase";
