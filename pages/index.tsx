@@ -58,7 +58,7 @@ export default function Home(props) {
     <>
       <Metatags />
       <main>
-        <PostFeed posts={posts} admin />
+        <PostFeed posts={posts} />
 
         {!loading && !postsEnd && (
           <button onClick={getMorePosts}>Load more</button>
