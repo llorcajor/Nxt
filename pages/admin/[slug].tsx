@@ -24,7 +24,7 @@ function PostManager() {
   const [preview, setPreview] = useState(false);
 
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug }: any = router.query;
 
   const postRef = firestore
     .collection("users")
