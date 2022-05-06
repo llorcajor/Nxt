@@ -1,6 +1,7 @@
 import AuthCheck from "../../components/AuthCheck";
 import styles from "../../styles/Admin.module.css";
 import { firestore, auth, serverTimestamp } from "../../lib/firebase";
+import ImageUploader from "../../components/ImageUploader";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -63,7 +64,14 @@ function PostManager() {
 }
 
 function PostForm({ defaultValues, postRef, preview }) {
-  const { register, handleSubmit, reset, watch, formState, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    formState,
+    reset,
+    watch,
+  } = useForm({
     defaultValues,
     mode: "onChange",
   });
@@ -91,7 +99,19 @@ function PostForm({ defaultValues, postRef, preview }) {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
-        <textarea {...register("content")}></textarea>
+        <ImageUploader />
+
+        <textarea
+          {...register("content", {
+            maxLength: { value: 20000, message: "content is too long" },
+            minLength: { value: 10, message: "content is too short" },
+            required: { value: true, message: "content is required" },
+          })}
+        ></textarea>
+
+        {errors.content && (
+          <p className="text-danger">{errors.content.message}</p>
+        )}
 
         <fieldset>
           <input
@@ -101,14 +121,6 @@ function PostForm({ defaultValues, postRef, preview }) {
           />
           <label>Published</label>
         </fieldset>
-
-        <textarea
-          {...register("content", {
-            maxLength: { value: 20000, message: "content is too long" },
-            minLength: { value: 10, message: "content is too short" },
-            required: { value: true, message: "content is required" },
-          })}
-        ></textarea>
 
         <button type="submit" disabled={!isDirty || !isValid}>
           Save Changes

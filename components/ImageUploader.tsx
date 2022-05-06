@@ -30,15 +30,15 @@ export default function ImageUploader() {
         100
       ).toFixed(0);
       setProgress(pct);
-
-      // Get downloadURL AFTER task resolves (Note: this is not a native Promise)
-      task
-        .then((d) => ref.getDownloadURL())
-        .then((url) => {
-          setDownloadURL(url);
-          setUploading(false);
-        });
     });
+
+    // Get downloadURL AFTER task resolves (Note: this is not a native Promise)
+    task
+      .then((d) => ref.getDownloadURL())
+      .then((url) => {
+        setDownloadURL(url);
+        setUploading(false);
+      });
   };
 
   return (
